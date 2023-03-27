@@ -1,11 +1,42 @@
 <h1>新增履歷</h1>
 <%= form_with model: @resume do |form| %>
-  <%= form.label :name, "姓名:" %>
-  <%= form.text_field :name %>
-  <%= form.label :age, "年紀：" %>
-  <%= form.number_field :age %>
-  <%= form.label :email, "Email" %>
-  <%= form.email_field :email %>
+  <%= render 'shared/form/error_message', record: @resume %>
+  <div class="field">
+    <%= form.label :name, "姓名:" %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="field">
+    <%= form.label :email, "Email" %>
+    <%= form.email_field :email %>
+  </div>
+  <div class="field">
+    <%= form.label :tel, "電話："  %>
+    <%= form.telephone_field :tel %>
+  </div>
+  <div class="field">
+    <%= form.label :skill, "技能：" %>
+    <%= form.text_field :skill %>
+  </div>
+  <div class="field">
+    <%= form.label :intro, "簡介：" %>
+    <%= form.text_area :intro %>
+  </div>
+  <div class="field">
+    <%= form.label :city, "居住地：" %>
+    <%= form.text_field :city %>
+  </div>
+  <div class="field">
+    <%= form.label :education, "學歷：" %>
+    <%= form.text_field :education %>
+  </div>
+  <div class="field">
+    <%= form.label :experience, "經歷：" %>
+    <%= form.text_field :experience %>
+  </div>
+  <div class="field">
+    <%= form.label :portfolio, "作品集：" %>
+    <%= form.text_area :portfolio %>
+  </div>
   <hr>
   <%= form.submit  "新增"%>
 <% end %>

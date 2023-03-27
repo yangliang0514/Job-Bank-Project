@@ -1,2 +1,7 @@
 <h1>履歷列表</h1>
-<a href="/resumes/new">新增履歷</a>
+<%= link_to "新增履歷", new_resume_path%>
+<div class="resume-container">
+  <% @resumes.each do |resume| %>
+    <%= render 'resume', resume: resume%>
+  <% end %>
+</div>
