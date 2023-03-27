@@ -1,5 +1,11 @@
 <h1>新增履歷</h1>
-<form>
-  姓名: <input type="text">
-  <button>新增</button>
-</form>
+<%= form_with model: @resume do |form| %>
+  <%= form.label :name, "姓名:" %>
+  <%= form.text_field :name %>
+  <%= form.label :age, "年紀：" %>
+  <%= form.number_field :age %>
+  <%= form.label :email, "Email" %>
+  <%= form.email_field :email %>
+  <hr>
+  <%= form.submit  "新增"%>
+<% end %>

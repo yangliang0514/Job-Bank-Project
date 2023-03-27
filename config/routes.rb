@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  root "pages#index"
+
   get "/resumes", to: "resumes#index"
-  get "resumes/new", to: "resumes#new"
-  get "/about", to: "about#index"
-  get "/contact", to: "about#contact"
+  post "/resumes", to: "resumes#create"
+  get "resumes/new", to: "resumes#new", as: "new_resume"
+  get "/about", to: "pages#about"
+  get "/contact", to: "pages#contact"
 end
