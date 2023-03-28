@@ -5,7 +5,8 @@
   <input type="submit" value="查詢">
 </form>
 <div class="resume-container">
-  <% @resumes.each do |resume| %>
-    <%= render 'resume', resume: resume%>
-  <% end %>
-</div>
+  <%= render partial: "resume", collection: @resumes %>
+  <%# @resumes.each do |resume| %>
+    <%#= render 'resume', resume: resume%>
+    <%# end %>
+  </div>
