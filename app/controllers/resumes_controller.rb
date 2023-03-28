@@ -3,6 +3,10 @@ class ResumesController < ApplicationController
     @resumes = Resume.all.order(created_at: :desc)
   end
 
+  def show
+    @resumes = Resume.find(params[:id])
+  end
+
   def new
     @resume = Resume.new
   end
