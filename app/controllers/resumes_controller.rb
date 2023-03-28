@@ -1,10 +1,15 @@
 class ResumesController < ApplicationController
+  # stree-ignore
+  before_action :find_resume, only: [:show, :edit, :update, :destroy]
+
   def index
+    # Lazy loading (可以先chain那些方法，等到最後進資料庫才會一次query，跟mongoose一樣)
     @resumes = Resume.all.order(created_at: :desc)
+    # Delegate methods (@resume出來會是一個物件的集合，不是那個實體，但會自動去找到那個上面的類別方法，再去查)
+    @resumes = @resumes.search(params[:keyword]) if params[:keyword].present?
   end
 
   def show
-    @resumes = Resume.find(params[:id])
   end
 
   def new
@@ -25,6 +30,22 @@ class ResumesController < ApplicationController
     render "resumes/new"
   end
 
+  def edit
+  end
+
+  def update
+    if @resume.update(resume_params)
+      redirect_to resume_path(@resume), notice: "已更新成功"
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @resume.destroy
+    redirect_to resumes_path, notice: "已成功刪除！"
+  end
+
   private
 
   def resume_params
@@ -39,5 +60,9 @@ class ResumesController < ApplicationController
       :experience,
       :portfolio,
     )
+  end
+
+  def find_resume
+    @resume = Resume.find(params[:id])
   end
 end

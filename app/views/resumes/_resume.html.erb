@@ -1,7 +1,7 @@
 <section class="resume-card">
   <header>
     <div class="cover">
-      <%= link_to show_resume_path(resume.id) do %>
+      <%= link_to resume_path(id: resume.id) do %>
         <img src="https://fakeimg.pl/350x200/ff0000,128/000,255">
       <% end %>
     </div>
@@ -18,9 +18,10 @@
   <footer>
     <time class="update-time"><%= format_date(resume.updated_at) %></time>
     <div class="functions">
-      <%= link_to '編輯', '#', class: 'btn' %>
+      <%= link_to '編輯', edit_resume_path(id: resume.id), class: 'btn' %>
       <%= link_to '建立副本', '#', class: 'btn' %>
-      <%= link_to '刪除', '#', class: 'btn btn-danger' %>
+      <%# 可以用link_to改變點link的method，是因為turbolink，可以再去查那是什麼 %>
+      <%= link_to '刪除', resume_path(id: resume.id), class: 'btn btn-danger', method: "delete", data: {confirm: "確定要刪除嗎？"} %>
     </div>
   </footer>
 </section>
