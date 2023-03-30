@@ -1,6 +1,6 @@
 class ResumesController < ApplicationController
-  # stree-ignore
-  before_action :find_resume, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :find_resume, only: %i[show edit update destroy]
 
   def index
     # Lazy loading (可以先chain那些方法，等到最後進資料庫才會一次query，跟mongoose一樣)
