@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root "pages#home"
 
-  resource :user, except: %i[new destroy] do
+  resource :users, except: %i[new destroy] do
     get "/sign_up", action: "new"
   end
   resources :resumes

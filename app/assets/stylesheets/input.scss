@@ -3,7 +3,8 @@
 
   input[type="email"],
   input[type="text"],
-  input[type="tel"] {
+  input[type="tel"],
+  input[type="password"] {
     border: 2px solid red;
   }
 }
