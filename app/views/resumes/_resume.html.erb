@@ -17,11 +17,13 @@
   </section>
   <footer>
     <time class="update-time"><%= format_date(resume.updated_at) %></time>
-    <div class="functions">
-      <%= link_to '編輯', edit_resume_path(id: resume.id), class: 'btn' %>
-      <%= link_to '建立副本', '#', class: 'btn' %>
-      <%# 可以用link_to改變點link的method，是因為turbolink，可以再去查那是什麼 %>
-      <%= link_to '刪除', resume_path(id: resume.id), class: 'btn btn-danger', method: "delete", data: {confirm: "確定要刪除嗎？"} %>
-    </div>
+    <% if current_user.role == "user" %>
+      <div class="functions">
+        <%= link_to '編輯', edit_resume_path(id: resume.id), class: 'btn' %>
+        <%= link_to '建立副本', '#', class: 'btn' %>
+        <%# 可以用link_to改變點link的method，是因為turbolink，可以再去查那是什麼 %>
+        <%= link_to '刪除', resume_path(id: resume.id), class: 'btn btn-danger', method: "delete", data: {confirm: "確定要刪除嗎？"} %>
+      </div>
+    <% end %>
   </footer>
 </section>

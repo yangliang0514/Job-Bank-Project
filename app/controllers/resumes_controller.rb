@@ -25,6 +25,7 @@ class ResumesController < ApplicationController
 
   def create
     @resume = Resume.new(resume_params)
+    @resume.user = current_user #是belongs_to做出來的方法，把他指向current user，意思就是把user放進去，讓他可以指向
 
     if @resume.save
       # flash => create a popup, use it kind of like a hash
