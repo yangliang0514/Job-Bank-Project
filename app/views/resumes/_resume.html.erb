@@ -17,7 +17,7 @@
   </section>
   <footer>
     <time class="update-time"><%= format_date(resume.updated_at) %></time>
-    <% if current_user.role == "user" %>
+    <% if policy(resume).new? %>
       <div class="functions">
         <%= link_to '編輯', edit_resume_path(id: resume.id), class: 'btn' %>
         <%= link_to '建立副本', '#', class: 'btn' %>

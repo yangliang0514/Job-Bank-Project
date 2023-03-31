@@ -21,11 +21,14 @@ class ResumesController < ApplicationController
 
   def new
     @resume = Resume.new
+    authorize @resume
   end
 
   def create
     @resume = Resume.new(resume_params)
     @resume.user = current_user #是belongs_to做出來的方法，把他指向current user，意思就是把user放進去，讓他可以指向
+
+    authorize @resume # pundit gem 提供的方法，用來驗證授權
 
     if @resume.save
       # flash => create a popup, use it kind of like a hash
@@ -39,9 +42,12 @@ class ResumesController < ApplicationController
   end
 
   def edit
+    authorize @resume
   end
 
   def update
+    authorize @resume
+
     if @resume.update(resume_params)
       redirect_to resume_path(@resume), notice: "已更新成功"
     else
@@ -50,6 +56,8 @@ class ResumesController < ApplicationController
   end
 
   def destroy
+    authorize @resume
+
     @resume.destroy
     redirect_to resumes_path, notice: "已成功刪除！"
   end

@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
+  include Pundit::Authorization
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   helper_method :user_signed_in?, :current_user
 
@@ -27,5 +29,10 @@ class ApplicationController < ActionController::Base
     render file: Rails.root.join("public", "404.html"),
            layout: false,
            status: 404 and return
+  end
+
+  def user_not_authorized
+    flash[:alert] = "權限不足"
+    redirect_back(fallback_location: root_path)
   end
 end
