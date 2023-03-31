@@ -11,6 +11,14 @@ class User < ApplicationRecord
 
   before_save :encrypt_password
 
+  # relations 資料關聯，但是資料表本身其實沒關聯，只是幫你加了方法可以根據你的id去找resumes
+  # 打user.resumes => Resume.where(user_id: id) 會這樣去找 (要注意單複數差別)，注意慣例，他會自己加上id
+  # 不然就是要自己加class_name, foreign_key，這裡的resume就只是當這個model中的這個欄位名稱，只是如果跟class_name一樣就不用再指定
+  has_many :resumes
+
+  # enum，把數字的資料欄位顯示出來變成文字，注意是變成字串，不知道為啥
+  enum role: { user: 1, company: 2, staff: 3 }
+
   def self.gender_list
     [["不公開", 0], ["男", 1], ["女", 2], ["其他", 3]]
   end

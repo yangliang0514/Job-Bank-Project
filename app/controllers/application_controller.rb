@@ -10,7 +10,11 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    return User.find_by(id: session[:_user_resume_dev_]) if user_signed_in?
+    if user_signed_in?
+      # 把找到的user存成instance variable，這樣下面也可以拿到，就不用需要時就一直往資料庫去找，叫memoization
+      @_user ||= User.find_by(id: session[:_user_resume_dev_])
+      return @_user
+    end
 
     return nil
   end

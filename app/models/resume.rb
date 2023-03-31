@@ -9,6 +9,8 @@ class Resume < ApplicationRecord
             }
   validates :tel, presence: true
 
+  belongs_to :user
+
   def self.search(keyword)
     where("name LIKE ?", "%#{keyword}%")
   end

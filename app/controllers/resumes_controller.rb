@@ -4,7 +4,14 @@ class ResumesController < ApplicationController
 
   def index
     # Lazy loading (可以先chain那些方法，等到最後進資料庫才會一次query，跟mongoose一樣)
-    @resumes = Resume.all.order(created_at: :desc)
+    # @resumes = Resume.where(user: current_user).order(created_at: :desc)
+    # 這裡的user其實是代表user_id: current_user.id，只是內建的慣例會自動去找
+    # 更好的寫法，resumes是用關聯建立的方法，建立在User底下
+    if current_user.role == "user"
+      @resumes = current_user.resumes.order(created_at: :desc)
+    else
+      @resumes = Resume.order(created_at: :desc)
+    end
     # Delegate methods (@resume出來會是一個物件的集合，不是那個實體，但會自動去找到那個上面的類別方法，再去查)
     @resumes = @resumes.search(params[:keyword]) if params[:keyword].present?
   end
@@ -63,6 +70,10 @@ class ResumesController < ApplicationController
   end
 
   def find_resume
-    @resume = Resume.find(params[:id])
+    if current_user.role == 1
+      @resume = current_user.resumes.find(params[:id])
+    else
+      @resume = Resume.find(params[:id])
+    end
   end
 end
