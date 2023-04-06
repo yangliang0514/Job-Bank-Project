@@ -11,20 +11,24 @@ class CommentsController < ApplicationController
     @comment.resume = @resume
 
     if @comment.save
-      redirect_to resume_path(@resume.id), notice: "新增評論成功"
+      # 因在form_with的local設成false，可以用JavaScript做畫面的部分更新
+      # 就是一樣post到背後的url，但不做redirect，而畫面上的評論區用JavaScript操作DOM的方式去做更新
+      # 所以這邊會直接跑到view裡面的create.js.erb去跑那個js檔案，所以可以在那裡面寫insertAdjacentHTML來做畫面更新，不轉址
+      # 是rails奇特的寫法
       return
     end
 
     @comments = @resume.comments.where(user: current_user).order(created_at: :desc)
+    # 記得用render不能直接把flash放在後面，要像這樣獨立另外寫，只有redirect_to才能直接寫在後面
     flash[:alert] = "請輸入內容"
     render "resumes/show"
   end
 
   def destroy
-    find_comment
     @comment.destroy
     # 把找出來的comment再找他對應的resume，因刪掉的事database裡面的，不是那個instance variable，所以還是可以得到
-    redirect_to resume_path(@comment.resume.id)
+    # 其實這邊可以不用把id指名放進去，只要resume就可以了，但我覺得這樣寫比較好懂
+    redirect_to resume_path(@comment.resume.id), notice: "評論已刪除"
   end
 
   private
