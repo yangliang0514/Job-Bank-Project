@@ -6,17 +6,19 @@
       <%= @resume.intro %>
     </article>
   </section>
-  <aside class="col-span-4">
-    <h2 class="text-lg font-bold">評論</h2>
-    <%# 路徑跟原本預設的不一樣，所以要自己輸入路徑 %>
-    <%= form_with model: @comment, id: 'comment-form', url: resume_comments_path(@resume.id), local: false, data: { controller: 'comment-form' } do |form| %>
-      <%= form.text_area :content, class: 'w-full rounded', rows: 4, data: { action: 'input->comment-form#input' } %>
-      <%= form.submit "新增評論", class: 'btn btn-disable', disabled: true, data: {
-          comment_form_target: 'button'
+  <% if policy(@commen).new? %>
+    <aside class="col-span-4">
+      <h2 class="text-lg font-bold">評論</h2>
+      <%# 路徑跟原本預設的不一樣，所以要自己輸入路徑 %>
+      <%= form_with model: @comment, id: 'comment-form', url: resume_comments_path(@resume.id), local: false, data: { controller: 'comment-form' } do |form| %>
+        <%= form.text_area :content, class: 'w-full rounded', rows: 4, data: { action: 'input->comment-form#input' } %>
+        <%= form.submit "新增評論", class: 'btn btn-disable', disabled: true, data: {
+        comment_form_target: 'button'
         } %>
-    <% end %>
-    <section class="mt-2 comment-list">
-      <%= render @comments %>
-    </section>
-  </aside>
+      <% end %>
+      <section class="mt-2 comment-list">
+        <%= render @comments %>
+      </section>
+    </aside>
+  <% end %>
 </section>

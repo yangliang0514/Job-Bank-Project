@@ -10,6 +10,8 @@ class CommentsController < ApplicationController
     # (只能放current_user，然後用resume去做comment)
     @comment.resume = @resume
 
+    authorize(@comment)
+
     if @comment.save
       # 因在form_with的local設成false，可以用JavaScript做畫面的部分更新
       # 就是一樣post到背後的url，但不做redirect，而畫面上的評論區用JavaScript操作DOM的方式去做更新

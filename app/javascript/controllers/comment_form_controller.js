@@ -13,8 +13,6 @@ export default class extends Controller {
   static targets = ["button"];
 
   input(e) {
-    console.log("Hello stimulus!");
-
     const content = e.target.value.trim();
 
     if (content) {
