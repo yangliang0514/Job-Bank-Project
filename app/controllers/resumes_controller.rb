@@ -17,6 +17,10 @@ class ResumesController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
+
+    # 把所有comments找出來並依照時間反向排列，要放到show裡面的，且只要找出那個user自己留的留言，才不會看到別人的留言
+    @comments = @resume.comments.where(user: current_user).order(created_at: :desc)
   end
 
   def new
@@ -50,9 +54,10 @@ class ResumesController < ApplicationController
 
     if @resume.update(resume_params)
       redirect_to resume_path(@resume), notice: "已更新成功"
-    else
-      render :edit
+      return
     end
+
+    render :edit
   end
 
   def destroy
@@ -81,8 +86,9 @@ class ResumesController < ApplicationController
   def find_resume
     if current_user.role == 1
       @resume = current_user.resumes.find(params[:id])
-    else
-      @resume = Resume.find(params[:id])
+      return
     end
+
+    @resume = Resume.find(params[:id])
   end
 end

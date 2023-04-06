@@ -7,9 +7,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       redirect_to root_path, notice: "註冊成功"
-    else
-      render :new
+      return
     end
+
+    render :new
   end
 
   def sign_in

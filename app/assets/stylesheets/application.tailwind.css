@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+  @apply px-4 py-2  rounded-full cursor-pointer inline-block shadow-sm;
+}
+
+.btn-sm {
+  @apply px-3 py-1 text-sm;
+}
+
+.btn-primary {
+  @apply bg-rose-600 text-rose-100 hover:bg-rose-700;
+}
+
+.heading-1 {
+  @apply text-xl;
+}
+
+/*
+
+@layer components {
+  .btn-primary {
+    @apply py-2 px-4 bg-blue-200;
+  }
+}
+
+*/

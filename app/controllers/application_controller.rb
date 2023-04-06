@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+  # this makes these methods avalible in all views
   helper_method :user_signed_in?, :current_user
 
   private

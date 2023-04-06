@@ -1,0 +1,22 @@
+.flash {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+
+  button {
+    border-radius: 10px;
+    padding: 10px 12px;
+    cursor: pointer;
+  }
+}
+
+.flash-alert {
+  color: white;
+  background-color: red;
+}
+
+.flash-notice {
+  color: white;
+  background-color: green;
+}

@@ -6,7 +6,16 @@ Rails.application.routes.draw do
     get "sign_up", action: "new"
     get "sign_in"
   end
-  resources :resumes
+
+  # 一個resume可以有好幾個comments，只有create時需要建立關聯，所以只有在create的時候需要nested route
+  resources :resumes do
+    # resources :comments, only: %i[create]
+
+    resources :comments, shallow: true, only: %i[create edit update destroy]
+  end
+
+  # 不需要nest在resume裡面的部分，直接對那個comment做的動作，或直接用上面那個shallow既可以有一樣的效果
+  # resources :comment, only: %i[edit update destroy]
 
   get "/about", to: "pages#about"
   get "/contact", to: "pages#contact"

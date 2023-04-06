@@ -1,1 +1,27 @@
-<h1><%= @resume.name %> 履歷</h1>
+<h1 class="heading-1"><%= @resume.name %> 履歷</h1>
+<section class="grid grid-cols-12 gap-2">
+  <section class="col-span-8">
+    <article>
+      <h3 class="font-bold">簡介</h3>
+      <%= @resume.intro %>
+    </article>
+  </section>
+  <aside class="col-span-4">
+    <h2 class="text-lg font-bold">評論</h2>
+    <%# 路徑跟原本預設的不一樣，所以要自己輸入路徑 %>
+    <%= form_with model: @comment, url: resume_comments_path(@resume.id) do |form| %>
+      <%= form.text_area :content, class: 'w-full rounded', rows: 6 %>
+      <%= form.submit "新增評論", class: 'btn btn-primary' %>
+    <% end %>
+    <section>
+      <% @comments.each do |comment| %>
+        <article class="mt-2 md-2">
+          <%= comment.content %> <br>
+          <%= format_date comment.created_at %>
+          <%= link_to "修改", edit_comment_path(comment.id) %>
+          <%= link_to "刪除", comment_path(comment.id), method: "delete" %>
+        </article>
+      <% end %>
+    </section>
+  </aside>
+</section>
