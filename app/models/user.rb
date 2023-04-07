@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates :password, presence: true
   validates :birthday, presence: true
 
-  before_save :encrypt_password
+  before_create :encrypt_password
 
   # relations 資料關聯，但是資料表本身其實沒關聯，只是幫你加了方法可以根據你的id去找resumes
   # 打user.resumes => Resume.where(user_id: id) 會這樣去找 (要注意單複數差別)，注意慣例，他會自己加上id

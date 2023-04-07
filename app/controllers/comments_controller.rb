@@ -26,11 +26,23 @@ class CommentsController < ApplicationController
     render "resumes/show"
   end
 
+  def edit
+  end
+
+  def update
+    if @comment.update(comment_data)
+      redirect_to @comment.resume, notice: "更新成功"
+      return
+    end
+
+    render :edit
+  end
+
   def destroy
+    authorize(@comment)
+
     @comment.destroy
-    # 把找出來的comment再找他對應的resume，因刪掉的事database裡面的，不是那個instance variable，所以還是可以得到
-    # 其實這邊可以不用把id指名放進去，只要resume就可以了，但我覺得這樣寫比較好懂
-    redirect_to resume_path(@comment.resume.id), notice: "評論已刪除"
+
   end
 
   private

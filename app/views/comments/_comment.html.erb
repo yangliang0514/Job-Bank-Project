@@ -1,12 +1,14 @@
-<article class="mb-2 border-b">
-  <p>
-    <%= comment.content %>
-  </p>
-  <time class="text-xs text-gray-500">
-    <%= format_date(comment.updated_at) %>
-  </time>
-  <footer class="my-1">
-    <%= link_to '編輯', '#', class: 'btn btn-xs btn-primary' %>
-    <%= link_to '刪除', comment_path(comment), method: 'delete', data: { confirm: '確認刪除？'}, class: 'btn btn-xs btn-danger' %>
-  </footer>
-</article>
+<%= turbo_frame_tag(comment) do %>
+  <article class="mb-2 border-b">
+    <p>
+      <%= comment.content %>
+    </p>
+    <time class="text-xs text-gray-500">
+      <%= format_date(comment.updated_at) %>
+    </time>
+    <footer class="my-1">
+      <%= link_to '編輯', edit_comment_path(comment), class: 'btn btn-xs btn-primary' %>
+      <%= link_to '刪除', comment_path(comment), method: 'delete', data: { confirm: '確認刪除？'}, class: 'btn btn-xs btn-danger' %>
+    </footer>
+  </article>
+<% end %>

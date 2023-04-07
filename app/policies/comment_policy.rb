@@ -4,7 +4,7 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def update?
-    user.company? and record.user = user
+    user.company? and record.user == user
   end
 
   def destroy?

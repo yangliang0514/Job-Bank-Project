@@ -1,8 +1,11 @@
-<% [:notice, :alert].each do |message| %>
-  <% if flash[message] %>
-    <div class="flash flash-<%= message %>">
-      <%= flash[message] %>
-      <button>X</button>
-    </div>
+<% [:notice, :alert].each do |t| %>
+  <% if flash[t] %>
+    <%= tag.div class: ["flash", "flash-#{t}"],
+                data: {
+                  controller: 'flash'
+                } do %>
+      <%= flash[t] %>
+      <button data-action="click->flash#close">X</button>
+    <% end %>
   <% end %>
 <% end %>

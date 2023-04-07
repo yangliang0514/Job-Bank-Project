@@ -1,6 +1,0 @@
-// 用var因為每做一次comment更新就會執行一次這個file，所以如果這裡用const or let都會變成重複declare，只好用var
-var list = document.querySelector(".comment-list")
-// 前面那個j是用來做跳脫的method，可以讓放進去的字不會被當成JavaScript執行
-var html = "<%= j render "comments/comment", comment: @comment %>"
-list.insertAdjacentHTML("afterbegin", html)
-document.querySelector("#comment_content").value = ""
