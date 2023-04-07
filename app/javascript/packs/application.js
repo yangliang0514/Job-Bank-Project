@@ -9,7 +9,6 @@ import * as ActiveStorage from "@rails/activestorage";
 import "scripts";
 import "channels";
 import "styles";
-// import "./controllers";
 import "@hotwired/turbo-rails";
 
 Rails.start();

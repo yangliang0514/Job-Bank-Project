@@ -1,7 +1,10 @@
 <h1 class="heading-1"><%= @resume.name %> 履歷
-  <button data-controller="favorite" data-id="<%= @resume.id %>" data-liked="<%= liked = current_user.liked?(@resume) %>">
-    <i class="fa-regular fa-thumbs-up" data-favorite-target="icon"></i>
-  </button>
+  <% if policy(@resume).like? %>
+    <button data-controller="favorite" data-id="<%= @resume.id %>" 
+            data-liked="<%= current_user.liked?(@resume) %>">
+      <i class="fa-regular fa-thumbs-up" data-favorite-target="icon"></i>
+    </button>
+  <% end %>
 </h1>
 <section class="grid grid-cols-12 gap-2">
   <section class="col-span-8">

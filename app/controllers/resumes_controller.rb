@@ -68,6 +68,8 @@ class ResumesController < ApplicationController
   end
 
   def like
+    authorize @resume
+
     liked = current_user.liked?(@resume)
 
     if liked
@@ -77,7 +79,9 @@ class ResumesController < ApplicationController
       current_user.liked_resumes << @resume
     end
 
-    render json: { id: params[:id] }
+    liked = !liked
+
+    render json: { id: params[:id], status: liked ? "liked" : "unliked" }
   end
 
   private

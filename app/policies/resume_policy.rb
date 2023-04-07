@@ -11,6 +11,10 @@ class ResumePolicy < ApplicationPolicy
     create?
   end
 
+  def like?
+    user.company?
+  end
+
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     # def resolve
