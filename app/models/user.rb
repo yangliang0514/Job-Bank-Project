@@ -32,6 +32,11 @@ class User < ApplicationRecord
     User.find_by(email: email, password: encrypted_password)
   end
 
+  def liked?(resume)
+    # 去找那個user喜歡list中有沒有某個履歷
+    self.liked_resumes.include?(resume)
+  end
+
   private
 
   def encrypt_password

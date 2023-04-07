@@ -1,6 +1,6 @@
 class ResumesController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_resume, only: %i[show edit update destroy]
+  before_action :find_resume, only: %i[show edit update destroy like]
 
   def index
     # Lazy loading (可以先chain那些方法，等到最後進資料庫才會一次query，跟mongoose一樣)
@@ -68,7 +68,16 @@ class ResumesController < ApplicationController
   end
 
   def like
-    render json: { id: params[:id], status: "liked" }
+    liked = current_user.liked?(@resume)
+
+    if liked
+      current_user.liked_resumes.delete(@resume)
+    else 
+      # 把那個履歷push進去那個liked array中
+      current_user.liked_resumes << @resume
+    end
+
+    render json: { id: params[:id] }
   end
 
   private
