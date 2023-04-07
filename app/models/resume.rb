@@ -12,6 +12,9 @@ class Resume < ApplicationRecord
   belongs_to :user #會預設把這個欄位變成required(必填)，不要的話就要再加上option來關掉
   has_many :comments
 
+  has_many :favorite_resumes
+  has_many :users, through: :favorite_resumes
+
   def self.search(keyword)
     where("name LIKE ?", "%#{keyword}%")
   end

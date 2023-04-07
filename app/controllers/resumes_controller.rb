@@ -67,6 +67,10 @@ class ResumesController < ApplicationController
     redirect_to resumes_path, notice: "已成功刪除！"
   end
 
+  def like
+    render json: { id: params[:id], status: "liked" }
+  end
+
   private
 
   def resume_params

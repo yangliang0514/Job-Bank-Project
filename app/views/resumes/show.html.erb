@@ -1,6 +1,6 @@
 <h1 class="heading-1"><%= @resume.name %> 履歷
-  <button data-controller="favorite" data-action="click->favorite#like">
-    <i class="fa-regular fa-thumbs-up"></i>
+  <button data-controller="favorite" data-id="<%= @resume.id %>">
+    <i class="fa-regular fa-thumbs-up" data-favorite-target="icon"></i>
   </button>
 </h1>
 <section class="grid grid-cols-12 gap-2">

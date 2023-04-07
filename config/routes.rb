@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   # 一個resume可以有好幾個comments，只有create時需要建立關聯，所以只有在create的時候需要nested route
   resources :resumes do
     # resources :comments, only: %i[create]
-
+    member { post :like }
     resources :comments, shallow: true, only: %i[create edit update destroy]
   end
 
