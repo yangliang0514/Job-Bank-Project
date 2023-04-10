@@ -74,14 +74,12 @@ class ResumesController < ApplicationController
 
     if liked
       current_user.liked_resumes.delete(@resume)
-    else 
+    else
       # 把那個履歷push進去那個liked array中
       current_user.liked_resumes << @resume
     end
 
-    liked = !liked
-
-    render json: { id: params[:id], status: liked ? "liked" : "unliked" }
+    render json: { id: params[:id], status: liked ? "unliked" : "liked" }
   end
 
   private

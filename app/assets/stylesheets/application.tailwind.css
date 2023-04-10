@@ -30,6 +30,10 @@
   @apply text-xl;
 }
 
+.drag-ghost {
+  @apply bg-blue-300;
+}
+
 /*
 
 @layer components {

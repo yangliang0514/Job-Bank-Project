@@ -27,9 +27,7 @@ class ApplicationController < ActionController::Base
   end
 
   def record_not_found
-    render file: Rails.root.join("public", "404.html"),
-           layout: false,
-           status: 404 and return
+    render file: "#{Rails.root}/public/404.html", layout: false, status: 404
   end
 
   def user_not_authorized

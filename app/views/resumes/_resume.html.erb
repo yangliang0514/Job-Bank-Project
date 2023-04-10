@@ -1,7 +1,7 @@
 <section class="border shadow-md">
   <header>
     <div class="cover">
-      <%= link_to resume_path(id: resume.id) do %>
+      <%= link_to resume_path(resume.slug || resume.id) do %>
         <img src="https://fakeimg.pl/350x200/ff0000,128/000,255" class="w-full">
       <% end %>
     </div>

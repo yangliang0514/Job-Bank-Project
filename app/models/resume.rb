@@ -1,6 +1,10 @@
 class Resume < ApplicationRecord
   acts_as_paranoid
 
+  # 用來作url slug的套件，可自動對resume產生slug，然後可以直接打slug在網址去取得
+  extend FriendlyId
+  friendly_id :name, use: %i[slugged finders]
+
   validates :name, presence: true
   validates :email,
             presence: true,
