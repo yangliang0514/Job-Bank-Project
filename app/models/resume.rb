@@ -14,6 +14,8 @@ class Resume < ApplicationRecord
   validates :tel, presence: true
 
   belongs_to :user #會預設把這個欄位變成required(必填)，不要的話就要再加上option來關掉
+  # 套件需要的
+  acts_as_list scope: :user
   has_many :comments
 
   has_many :favorite_resumes

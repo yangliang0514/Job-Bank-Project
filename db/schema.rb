@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_10_025750) do
+ActiveRecord::Schema.define(version: 2023_04_10_192027) do
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 2023_04_10_025750) do
     t.datetime "deleted_at"
     t.integer "user_id"
     t.string "slug"
+    t.integer "position"
     t.index ["deleted_at"], name: "index_resumes_on_deleted_at"
     t.index ["slug"], name: "index_resumes_on_slug", unique: true
     t.index ["user_id"], name: "index_resumes_on_user_id"

@@ -3,10 +3,19 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+  # 自動從session找有沒有設定語系，把語系改成設定的
+  before_action :set_locale
+
   # this makes these methods avalible in all views
   helper_method :user_signed_in?, :current_user
 
   private
+
+  # 如果使用者有設定語系，就用他的，不然就用default
+  def set_locale
+    locale = session[:locale] || I18n.default_locale
+    I18n.locale = locale
+  end
 
   def user_signed_in?
     session[:_user_resume_dev_].present?

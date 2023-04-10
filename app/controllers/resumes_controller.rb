@@ -20,7 +20,8 @@ class ResumesController < ApplicationController
     @comment = Comment.new
 
     # 把所有comments找出來並依照時間反向排列，要放到show裡面的，且只要找出那個user自己留的留言，才不會看到別人的留言
-    @comments = @resume.comments.where(user: current_user).order(created_at: :desc)
+    @comments =
+      @resume.comments.order(created_at: :desc).where(user: current_user)
   end
 
   def new

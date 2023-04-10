@@ -1,0 +1,13 @@
+zh_tw:
+  nav:
+    home: "首頁"
+    sign_up: "註冊"
+    sign_in: "登入"
+    sign_out: "登出"
+    resume: "履歷"
+    about: "關於"
+    contact: "聯絡"
+
+  locale:
+    other_lang: "日本語"
+    switch: "ja"

@@ -13,6 +13,12 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem "paranoia", "~> 2.6"
 gem 'hotwire-rails', '~> 0.1.3'
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem "pundit", "~> 2.3"
+gem "tailwindcss-rails", "~> 2.0"
+gem "friendly_id", "~> 5.5"
+gem "acts_as_list", "~> 1.1"
+
 
 
 gem 'bootsnap', '>= 1.4.4', require: false
@@ -35,11 +41,5 @@ group :test do
   gem 'webdrivers'
 end
 
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-gem "pundit", "~> 2.3"
 
 
-gem "tailwindcss-rails", "~> 2.0"
-
-gem "friendly_id", "~> 5.5"

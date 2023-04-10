@@ -1,0 +1,13 @@
+ja:
+  nav:
+    home: "ホームページ"
+    sign_up: "登録"
+    sign_in: "ログイン"
+    sign_out: "ログアウト"
+    resume: "履歴書"
+    about: "紹介"
+    contact: "お問い合わせ"
+
+  locale:
+    other_lang: "中文"
+    switch: "zh_tw"

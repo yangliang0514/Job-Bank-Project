@@ -4,7 +4,8 @@
   <input type="submit" class="btn btn-primary" value="查詢">
 </form>
 <%= link_to "新增履歷", new_resume_path, class: 'btn btn-primary mt-2' if policy(Resume).new?%>
-<section class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-2 mt-2" data-controller="sortable">
+<section class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-2 mt-2" 
+         data-controller="sortable">
   <%= render partial: "resume", collection: @resumes %>
   <%# @resumes.each do |resume| %>
     <%#= render 'resume', resume: resume%>
