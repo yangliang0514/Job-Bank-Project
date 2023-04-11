@@ -2,7 +2,7 @@ class LocaleController < ApplicationController
   def change
     if available_locale.include?(params[:lang])
       session[:locale] = params[:lang]
-      redirect_to root_path
+      redirect_back fallback_location: :back
       return
     end
 

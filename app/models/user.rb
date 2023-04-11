@@ -21,8 +21,10 @@ class User < ApplicationRecord
   has_many :favorite_resumes
   has_many :liked_resumes, through: :favorite_resumes, source: :resume
 
+  has_many :orders
+
   # enum，把數字的資料欄位顯示出來變成文字，注意是變成字串，不知道為啥
-  enum role: { user: 1, company: 2, staff: 3 }
+  enum role: { user: 1, company: 2, staff: 3, vip: 4 }
 
   def self.gender_list
     [["不公開", 0], ["男", 1], ["女", 2], ["其他", 3]]

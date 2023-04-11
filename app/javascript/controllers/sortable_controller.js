@@ -9,7 +9,7 @@ export default class extends Controller {
     sortable.create(this.element, {
       ghostClass: "drag-ghost",
       onUpdate: async function (e) {
-        const { id } = e.item.dataset;
+        const id = e.item.dataset.id;
         const newIndex = e.newIndex + 1;
         const url = `/api/v1/resumes/${id}/sort`;
 

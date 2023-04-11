@@ -18,13 +18,14 @@ gem "pundit", "~> 2.3"
 gem "tailwindcss-rails", "~> 2.0"
 gem "friendly_id", "~> 5.5"
 gem "acts_as_list", "~> 1.1"
-
-
-
+gem "braintree", "~> 4.10.0"
+gem "aasm", "~> 5.5"
 gem 'bootsnap', '>= 1.4.4', require: false
+gem "dotenv-rails", "~> 2.8", groups: [:development, :test]
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
 end
 
 group :development do
@@ -43,3 +44,7 @@ end
 
 
 
+
+
+
+gem "kaminari", "~> 1.2"

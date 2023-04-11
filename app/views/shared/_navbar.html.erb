@@ -2,6 +2,8 @@
   <%= link_to t("nav.home"), root_path %>
   <ul class="flex">
     <% if user_signed_in? %>
+      <li class="mx-2"><%= link_to "付費升級", pricing_path %></li>
+      <li class="mx-2"><%= current_user.email %></li>
       <li class="mx-2"><%= link_to t("nav.sign_out"), sessions_path, method: "delete" %></li>
     <% else %>
       <li class="mx-2"><%= link_to t("nav.sign_up"), sign_up_users_path %></li>

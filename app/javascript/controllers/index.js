@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import BraintreeController from "./braintree_controller"
+application.register("braintree", BraintreeController)
+
 import CommentFormController from "./comment_form_controller"
 application.register("comment-form", CommentFormController)
 

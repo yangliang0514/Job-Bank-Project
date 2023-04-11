@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_10_192027) do
+ActiveRecord::Schema.define(version: 2023_04_11_064359) do
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
@@ -42,6 +42,18 @@ ActiveRecord::Schema.define(version: 2023_04_10_192027) do
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "serial"
+    t.string "status", default: "pending"
+    t.string "plan"
+    t.decimal "amount"
+    t.datetime "paid_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "resumes", force: :cascade do |t|
@@ -78,4 +90,5 @@ ActiveRecord::Schema.define(version: 2023_04_10_192027) do
 
   add_foreign_key "favorite_resumes", "resumes"
   add_foreign_key "favorite_resumes", "users"
+  add_foreign_key "orders", "users"
 end

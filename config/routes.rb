@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     member { post :like }
     resources :comments, shallow: true, only: %i[create edit update destroy]
   end
+  # 不需要nest在resume裡面的部分，直接對那個comment做的動作，或直接用上面那個shallow既可以有一樣的效果
+  # resources :comment, only: %i[edit update destroy]
 
   # create routes for APIs
   # /api/v1/resumes/:id/sort
@@ -28,9 +30,10 @@ Rails.application.routes.draw do
     end
   end
 
-  # 不需要nest在resume裡面的部分，直接對那個comment做的動作，或直接用上面那個shallow既可以有一樣的效果
-  # resources :comment, only: %i[edit update destroy]
+  get "/plan", to: "plan#payment"
+  post "/pay", to: "plan#pay"
 
+  get "/pricing", to: "pages#pricing"
   get "/about", to: "pages#about"
   get "/contact", to: "pages#contact"
 end
