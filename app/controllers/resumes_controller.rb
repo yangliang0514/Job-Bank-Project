@@ -7,10 +7,10 @@ class ResumesController < ApplicationController
     # @resumes = Resume.where(user: current_user).order(created_at: :desc)
     # 這裡的user其實是代表user_id: current_user.id，只是內建的慣例會自動去找
     # 更好的寫法，resumes是用關聯建立的方法，建立在User底下
-    if current_user.role == "user"
-      @resumes = current_user.resumes.order(created_at: :desc)
+    if current_user.role == "user" || current_user.role == "vip"
+      @resumes = current_user.resumes
     else
-      @resumes = Resume.order(created_at: :desc)
+      @resumes = Resume.all
     end
     # Delegate methods (@resume出來會是一個物件的集合，不是那個實體，但會自動去找到那個上面的類別方法，再去查)
     @resumes = @resumes.search(params[:keyword]) if params[:keyword].present?
@@ -43,7 +43,9 @@ class ResumesController < ApplicationController
     end
 
     flash[:alert] = "新增履歷失敗"
-    render "resumes/new"
+
+    # 這裡要status 403，因為用turbo drive時，如果有validation error，要回給他400 or 500，不然會出現錯誤
+    render "resumes/new", status: 403
   end
 
   def edit

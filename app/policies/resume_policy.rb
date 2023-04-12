@@ -1,6 +1,6 @@
 class ResumePolicy < ApplicationPolicy
   def create?
-    @user.role == "user"
+    @user.role == "user" || @user.role == "vip"
   end
 
   def update?

@@ -13,7 +13,7 @@ class Api::V1::ResumesController < ApplicationController
   private
 
   def find_resume
-    if current_user.role == 1
+    if current_user.role == "user" || current_user.role == "vip"
       @resume = current_user.resumes.find(params[:id])
       return
     end
